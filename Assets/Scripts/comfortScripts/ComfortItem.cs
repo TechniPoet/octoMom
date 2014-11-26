@@ -40,7 +40,7 @@ public class ComfortItem : MonoBehaviour {
             Color col = GetComponent<SpriteRenderer>().color;
             col.a = normA;
             GetComponent<SpriteRenderer>().color = col;
-            Debug.Log("not touching anything");
+            //Debug.Log("not touching anything");
         }
 
         

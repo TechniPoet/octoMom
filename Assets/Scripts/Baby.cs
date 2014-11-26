@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Baby : MonoBehaviour {
     Rect stateRect;
+    
     public Sprite sleepTex;
     public Sprite cryingTex;
     public Sprite pukingTex;
@@ -12,6 +13,8 @@ public class Baby : MonoBehaviour {
     public Sprite infectionTex;
     public Baby leftBaby;
     public Baby rightBaby;
+
+    public int _babyNum;
 
     private Sprite stateTex;
     private SpriteRenderer rend;
@@ -191,8 +194,10 @@ public class Baby : MonoBehaviour {
 
     void Escalate()
     {
+        Debug.Log("Baby:" + _babyNum + " Escalating");
         //If left crying then neighbors will wake up
         if(_crying) {
+            Debug.Log("Baby:" + _babyNum + " crying");
             Escaping();
             if (leftBaby.IsSleeping())
                 leftBaby.Cry();
@@ -200,14 +205,17 @@ public class Baby : MonoBehaviour {
                 rightBaby.Cry();
         }
         else if (_hurt || _puking) {
+            Debug.Log("Baby:" + _babyNum + " Hurt or puking");
             //untreated puking or injury leads to infection
             Infected();
         }
         else if (_escaping) {
+            Debug.Log("Baby:" + _babyNum + " escaping");
             //escaping hurts the baby
             Hurt();
         }
         else if (_infected) {
+            Debug.Log("Baby:" + _babyNum + " infected");
             //untreated infections kill babies
             Dead();
         }

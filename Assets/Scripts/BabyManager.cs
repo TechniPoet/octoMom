@@ -21,12 +21,15 @@ public class BabyManager : MonoBehaviour {
 
     void BabyEvents() {
         int babiesWoken = 0;
+        int attempts = 0;
         if (!AllAwake()) {
-            while (babiesWoken < troubleBabies)
+            while (babiesWoken < troubleBabies && attempts < 40)
             {
+                attempts++;
                 int selectedBaby = Random.Range(0, babies.Length);
                 if (babies[selectedBaby].IsSleeping())
                 {
+                    
                     int babyCondition = Random.Range(0, 5);
                     if (babyCondition <=1) {
                         babies[selectedBaby].Cry();
@@ -57,7 +60,10 @@ public class BabyManager : MonoBehaviour {
 
     public void AddAngryBaby()
     {
-        troubleBabies++;
+        if (troubleBabies < 8) {
+            troubleBabies++;
+        }
+        
     }
     bool AllDead()
     {
