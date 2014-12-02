@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Baby : MonoBehaviour {
     Rect stateRect;
-    
+    //ItemIndicator indicator;
     public Sprite sleepTex;
     public Sprite cryingTex;
     public Sprite pukingTex;
@@ -32,10 +32,13 @@ public class Baby : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rend = GetComponent<SpriteRenderer>();
+        //indicator = GetComponentInChildren<ItemIndicator>();
         this.transform.localScale = new Vector3(.5f, .5f, 1f);
         stateTex = sleepTex;
         rend.sprite = sleepTex;
 	}
+
+    
 
     void Awake()
     {
@@ -54,7 +57,7 @@ public class Baby : MonoBehaviour {
         }
         else
         {
-            if (escalateAdded)
+            if (escalateAdded && Sleeping)
             {
                 PhaseManager.PhaseOver -= Escalate;
                 escalateAdded = false;
@@ -218,6 +221,40 @@ public class Baby : MonoBehaviour {
             Debug.Log("Baby:" + _babyNum + " infected");
             //untreated infections kill babies
             Dead();
+        }
+    }
+    public int GetState()
+    {
+        if (hasObj || Sleeping || IsDead())
+        {
+            return 0;
+        }
+        else
+        {
+            if (_crying)
+            {
+                return 1;
+            }
+            else if (_hurt)
+            {
+                return 2;
+            }
+            else if (_puking)
+            {
+                return 3;
+            }
+            else if (_escaping)
+            {
+                return 4;
+            }
+            else if (_infected)
+            {
+                return 5;
+            }
+            else
+            {
+                throw new UnityException("Baby has an odd state");
+            }
         }
     }
 }

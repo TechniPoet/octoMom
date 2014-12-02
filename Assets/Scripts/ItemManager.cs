@@ -25,7 +25,6 @@ public class ItemManager : MonoBehaviour {
             GameObject obj = ((GameObject)Instantiate(Pacifier));
             obj.SetActive(true);
             items.Add(obj);
-            
         }
         for (int i = 0; i < faAmt; i++)
         {
@@ -55,7 +54,7 @@ public class ItemManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
     public void LoseItem()
@@ -66,6 +65,69 @@ public class ItemManager : MonoBehaviour {
             if(items[chosen].activeSelf) {
                 items[chosen].SetActive(false);
                 lost = true;
+            }
+        }
+    }
+
+    public Dictionary<string, int> GetItems() {
+        Dictionary<string, int> ret = new Dictionary<string, int>();
+        ret.Add("Pacifier", pAmt);
+        ret.Add("BunnyBooBoo", bbAmt);
+        ret.Add("First Aid", faAmt);
+        ret.Add("Blanket", bAmt);
+        ret.Add("Towel", tAmt);
+        return ret;
+    }
+
+    public void AddItems(Dictionary<string, int> bought) {
+        if (bought["Pacifier"] > 0)
+        {
+            for (int i = 0; i < bought["Pacifier"]; i++)
+            {
+                GameObject obj = ((GameObject)Instantiate(Pacifier));
+                obj.SetActive(true);
+                items.Add(obj);
+                pAmt++;
+            }
+        }
+        if (bought["BunnyBooBoo"] > 0)
+        {
+            for (int i = 0; i < bought["BunnyBooBoo"]; i++)
+            {
+                GameObject obj = ((GameObject)Instantiate(BunnyBoo));
+                obj.SetActive(true);
+                items.Add(obj);
+                bbAmt++;
+            }
+        }
+        if (bought["First Aid"] > 0)
+        {
+            for (int i = 0; i < bought["First Aid"]; i++)
+            {
+                GameObject obj = ((GameObject)Instantiate(FirstAid));
+                obj.SetActive(true);
+                items.Add(obj);
+                faAmt++;
+            }
+        }
+        if (bought["Blanket"] > 0)
+        {
+            for (int i = 0; i < bought["Blanket"]; i++)
+            {
+                GameObject obj = ((GameObject)Instantiate(Blanket));
+                obj.SetActive(true);
+                items.Add(obj);
+                bAmt++;
+            }
+        }
+        if (bought["Towel"] > 0)
+        {
+            for (int i = 0; i < bought["Towel"]; i++)
+            {
+                GameObject obj = ((GameObject)Instantiate(Towel));
+                obj.SetActive(true);
+                items.Add(obj);
+                tAmt++;
             }
         }
     }

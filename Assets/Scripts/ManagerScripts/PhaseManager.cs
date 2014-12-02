@@ -16,33 +16,44 @@ public class PhaseManager : MonoBehaviour {
     float flashTime = -1;
     public delegate void PhaseManage();
     public static event PhaseManage PhaseOver;
+    public Texture sun;
+    public Texture moon;
 
 	// Use this for initialization
 	void Start () {
         phaseStart = Time.time;
+        phaseLength = phaseLength / 2;
         workDone = 0;
         PhaseOver += WorkWeekOver;
-        PhaseOver += FlashRed;
         old = Camera.main.backgroundColor;
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        
 	    if (Time.time - phaseStart >= phaseLength) {
             PhaseOver();
             phaseNum++;
             phaseStart = Time.time;
+            if (phaseNum == 1)
+            {
+                phaseLength = phaseLength * 2;
+            }
+            else if (phaseNum % 12 == 0 && phaseNum > 5)
+            {
+                phaseLength -= 5;
+            }
         }
         if (Time.time - flashTime >= .5) {
             Camera.main.backgroundColor = old;
         }
-        
-        
+
 	}
 
     void WorkWeekOver()
     {
+        
         if (phaseNum > 0 && phaseNum % 2 == 0)
         {
             workDone -= workLoad;
@@ -50,7 +61,13 @@ public class PhaseManager : MonoBehaviour {
             {
                 //remove an item
                 itemManager.LoseItem();
+                Camera.main.backgroundColor = Color.red;
             }
+            else
+            {
+                Camera.main.backgroundColor = Color.green;
+            }
+            flashTime = Time.time;
         }
 
         if (phaseNum > 0 && phaseNum % 4 == 0)
@@ -60,6 +77,7 @@ public class PhaseManager : MonoBehaviour {
     }
     void OnGUI()
     {
+        
         float workX = 10;
         float workY = Screen.height - (Screen.height * .2f);
         float workWidth = Screen.width * .1f;
@@ -72,12 +90,15 @@ public class PhaseManager : MonoBehaviour {
         if (GUI.Button(workRect, "WORK")) {
             workDone++;
         }
-        
     }
 
-    void FlashRed()
+    public int GetCash()
     {
-        Camera.main.backgroundColor = Color.red;
-        flashTime = Time.time;
+        return workDone;
+    }
+
+    public void SetCash(int leftover)
+    {
+        workDone = leftover;
     }
 }

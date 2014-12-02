@@ -23,22 +23,22 @@ public class BabyManager : MonoBehaviour {
         int babiesWoken = 0;
         int attempts = 0;
         if (!AllAwake()) {
-            while (babiesWoken < troubleBabies && attempts < 40)
+            while (babiesWoken < troubleBabies && attempts < 80)
             {
                 attempts++;
                 int selectedBaby = Random.Range(0, babies.Length);
                 if (babies[selectedBaby].IsSleeping())
                 {
                     
-                    int babyCondition = Random.Range(0, 5);
-                    if (babyCondition <=1) {
+                    int babyCondition = Random.Range(0, 10);
+                    if (babyCondition <= 2) {
                         babies[selectedBaby].Cry();
                     }
-                    else if (babyCondition <= 2)
+                    else if (babyCondition == 4)
                     {
                         babies[selectedBaby].Puking();
                     }
-                    else if (babyCondition <= 3)
+                    else if (babyCondition <= 7)
                     {
                         babies[selectedBaby].Escaping();
                     }
@@ -60,7 +60,7 @@ public class BabyManager : MonoBehaviour {
 
     public void AddAngryBaby()
     {
-        if (troubleBabies < 8) {
+        if (troubleBabies < babies.Length) {
             troubleBabies++;
         }
         
