@@ -54,7 +54,7 @@ public class Menu : MonoBehaviour {
 
         float buf = 10;
         float itemX = Screen.width * .35f;
-        float itemHeight = Screen.height * .05f;
+        float itemHeight = Screen.height * .08f;
         float itemY = Screen.height * .2f;
         float numWidth = 20f;
         float labelWidth = 130f;

@@ -601,7 +601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e781c1b6709dfa84bba20a64d4a9f0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phaseLength: 10
+  phaseLength: 20
   workLoad: 40
   itemManager: {fileID: 779898130}
   babeManager: {fileID: 1372112576}
