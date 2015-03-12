@@ -601,12 +601,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e781c1b6709dfa84bba20a64d4a9f0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phaseLength: 10
+  phaseLength: 20
   workLoad: 40
   itemManager: {fileID: 779898130}
   babeManager: {fileID: 1372112576}
-  sun: {fileID: 0}
-  moon: {fileID: 0}
+  sun: {fileID: 2800000, guid: aa7b892f7c7116c43a166cf0c2750e05, type: 3}
+  moon: {fileID: 2800000, guid: e1db167beb8fb314c8a2caff515712c4, type: 3}
 --- !u!4 &416815273
 Transform:
   m_ObjectHideFlags: 0
