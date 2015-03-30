@@ -15,7 +15,7 @@ public class BabyManager : MonoBehaviour {
 	void Update () {
 	    if(AllDead()) {
             Application.Quit();
-            UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
         }
 	}
 
