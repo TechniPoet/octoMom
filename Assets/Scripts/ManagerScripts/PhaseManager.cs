@@ -6,9 +6,10 @@ public class PhaseManager : MonoBehaviour {
     public int workLoad;
     public ItemManager itemManager;
     public BabyManager babeManager;
-    int workDone;
+	public int totalWork = 0;
+    public int workDone;
     float phaseStart;
-    int phaseNum = 0;
+    public int phaseNum = 0;
     Rect timeRect;
     Rect workRect;
     Rect infoRect;
@@ -26,7 +27,6 @@ public class PhaseManager : MonoBehaviour {
         workDone = 0;
         PhaseOver += WorkWeekOver;
         old = Camera.main.backgroundColor;
-
 	}
 	
 	// Update is called once per frame
@@ -89,6 +89,7 @@ public class PhaseManager : MonoBehaviour {
         GUI.Label(infoRect, "Quota: " + workLoad + " Made: " + workDone);
         if (GUI.Button(workRect, "WORK")) {
             workDone++;
+			totalWork++;
         }
     }
 

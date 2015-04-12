@@ -14,7 +14,6 @@ public class ItemManager : MonoBehaviour {
     public int bbAmt;
     public int tAmt;
     List<GameObject> items;
-    
 
 	// Use this for initialization
 	void Awake () {
@@ -24,30 +23,35 @@ public class ItemManager : MonoBehaviour {
         {
             GameObject obj = ((GameObject)Instantiate(Pacifier));
             obj.SetActive(true);
+			obj.transform.parent = this.gameObject.transform;
             items.Add(obj);
         }
         for (int i = 0; i < faAmt; i++)
         {
             GameObject obj = ((GameObject)Instantiate(FirstAid));
             obj.SetActive(true);
+			obj.transform.parent = this.gameObject.transform;
             items.Add(obj);
         }
         for (int i = 0; i < bAmt; i++)
         {
             GameObject obj = ((GameObject)Instantiate(Blanket));
             obj.SetActive(true);
+			obj.transform.parent = this.gameObject.transform;
             items.Add(obj);
         }
         for (int i = 0; i < bbAmt; i++)
         {
             GameObject obj = ((GameObject)Instantiate(BunnyBoo));
             obj.SetActive(true);
+			obj.transform.parent = this.gameObject.transform;
             items.Add(obj);
         }
         for (int i = 0; i < tAmt; i++)
         {
             GameObject obj = ((GameObject)Instantiate(Towel));
             obj.SetActive(true);
+			obj.transform.parent = this.gameObject.transform;
             items.Add(obj);
         }
 	}

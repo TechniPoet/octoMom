@@ -4,6 +4,7 @@ using System.Collections;
 public class BabyManager : MonoBehaviour {
     Baby[] babies;
     int troubleBabies = 1;
+	public LoseScripts lose;
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +14,9 @@ public class BabyManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(AllDead()) {
-            Application.Quit();
+	    if(BabiesDead() >= 3) {
+            //Application.Quit();
+			lose.Lose();
             //UnityEditor.EditorApplication.isPlaying = false;
         }
 	}
@@ -74,4 +76,15 @@ public class BabyManager : MonoBehaviour {
         }
         return true;
     }
+
+	int BabiesDead()
+	{
+		int count = 0;
+		foreach (Baby bab in babies)
+		{
+			if (bab.IsDead())
+				count++;
+		}
+		return count;
+	}
 }
